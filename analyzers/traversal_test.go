@@ -17,7 +17,7 @@ package analyzers
 import (
 	"testing"
 
-	"github.com/praetorian-inc/gokart/test/testutil"
+	"github.com/estensen/gokart/test/testutil"
 )
 
 func TestPathTraversal(t *testing.T) {

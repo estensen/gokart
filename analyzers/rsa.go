@@ -19,7 +19,7 @@ import (
 	"go/constant"
 	"go/token"
 
-	"github.com/praetorian-inc/gokart/util"
+	"github.com/estensen/gokart/util"
 
 	"golang.org/x/tools/go/analysis"
 	"golang.org/x/tools/go/analysis/passes/buildssa"

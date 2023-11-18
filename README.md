@@ -4,8 +4,8 @@
 
 # GoKart - Go Security Static Analysis
 
-[![CI](https://github.com/praetorian-inc/gokart/workflows/CI/badge.svg)](actions?query=branch%3Adevelopment)
-[![Release](https://github.com/praetorian-inc/gokart/workflows/Release/badge.svg)](releases)
+[![CI](https://github.com/estensen/gokart/workflows/CI/badge.svg)](actions?query=branch%3Adevelopment)
+[![Release](https://github.com/estensen/gokart/workflows/Release/badge.svg)](releases)
 
 GoKart is a static analysis tool for Go that finds vulnerabilities using
 the SSA (single static assignment) form of Go source code. It is capable of
@@ -23,17 +23,17 @@ clicking [here](https://chariot.praetorian.com/app/login?register&utm_source=git
 
 ## Why We Built GoKart
 
-Static analysis is a powerful technique for finding vulnerabilities in source code. 
+Static analysis is a powerful technique for finding vulnerabilities in source code.
 However, the approach has suffered from being noisy - that is, many static analysis
 tools find quite a few "vulnerabilities" that are not actually real. This has led
 to developer friction as users get tired of the tools "crying wolf" one time too
 many.
 
-The motivation for GoKart was to address this: could we create a scanner with 
+The motivation for GoKart was to address this: could we create a scanner with
 significantly lower false positive rates than existing tools? Based on our experimentation
 the answer is yes. By leveraging source-to-sink tracing and SSA, GoKart is capable
-of tracking variable taint between variable assignments, significantly improving the 
-accuracy of findings. Our focus is on usability: pragmatically, that means we 
+of tracking variable taint between variable assignments, significantly improving the
+accuracy of findings. Our focus is on usability: pragmatically, that means we
 have optimized our approaches to reduce false alarms.
 
 For more information, please read [our blog post](https://www.praetorian.com/blog/introducing-gokart?utm_source=github&utm_medium=organic_oss&utm_campaign=gokart).
@@ -45,12 +45,12 @@ You can install GoKart locally by using any one of the options listed below.
 ### Install with `go install`
 
 ```shell
-$ go install github.com/praetorian-inc/gokart@latest
+$ go install github.com/estensen/gokart@latest
 ```
 
 ### Install a release binary
 
-1. Download the binary for your OS from the [releases page](https://github.com/praetorian-inc/gokart/releases).
+1. Download the binary for your OS from the [releases page](https://github.com/estensen/gokart/releases).
 
 2. (OPTIONAL) Download the `checksums.txt` file to verify the integrity of the archive
 
@@ -79,7 +79,7 @@ $ mv ./gokart /usr/local/bin/
 
 ```shell
 # clone the GoKart repo
-$ git clone https://github.com/praetorian-inc/gokart.git
+$ git clone https://github.com/estensen/gokart.git
 
 # navigate into the repo directory and build
 $ cd gokart
@@ -90,22 +90,26 @@ $ mv ./gokart /usr/local/bin
 ```
 
 ### Docker Support
+
 Build the docker image
+
 ```shell
 docker build -t gokart .
 ```
 
 Running the container with a local scan (the local scan directory needs to be mounted to the container image)
+
 ```shell
 docker run -v /path/to/scan-dir:/scan-dir gokart scan /scan-dir
 ```
 
 Running the container with a remote scan (when specifying a private key for auth, that will also need to be mounted to the container)
+
 ```shell
-docker run gokart scan -r https://github.com/praetorian-inc/gokart
+docker run gokart scan -r https://github.com/estensen/gokart
 
 # specifying a private key for private repository ssh authentication
-docker run -v /path/to/key-dir/:/key-dir gokart scan -r git@github.com:praetorian-inc/gokart.git -k /key-dir/ssh_key
+docker run -v /path/to/key-dir/:/key-dir gokart scan -r git@github.com:estensen/gokart.git -k /key-dir/ssh_key
 ```
 
 ## Usage
@@ -120,7 +124,7 @@ gokart scan <flags>
 ### Scan a Go module in a different directory
 
 ```shell
-gokart scan <directory> <flags> 
+gokart scan <directory> <flags>
 ```
 
 ### Get Help
@@ -166,7 +170,7 @@ gokart scan go-test-bench/ -o gokart-go-test-bench.txt
 # Output scarif results to file
 gokart scan go-test-bench/ -o gokart-go-test-bench.txt -s
 
-# Scan remote public repository 
+# Scan remote public repository
 # Repository will be cloned locally, scanned and deleted afterwards
 gokart scan -r https://github.com/ShiftLeftSecurity/shiftleft-go-demo -v
 
@@ -174,13 +178,13 @@ gokart scan -r https://github.com/ShiftLeftSecurity/shiftleft-go-demo -v
 gokart scan -r https://github.com/ShiftLeftSecurity/shiftleft-go-demo -b actions_fix
 
 # Scan remote private repository via ssh
-gokart scan -r git@github.com:Contrast-Security-OSS/go-test-bench.git 
+gokart scan -r git@github.com:Contrast-Security-OSS/go-test-bench.git
 
-# Scan remote private repository and optionally specify a key for ssh authentication 
+# Scan remote private repository and optionally specify a key for ssh authentication
 gokart scan -r git@github.com:Contrast-Security-OSS/go-test-bench.git -k /home/gokart/.ssh/github_rsa_key
 
 # Use remote scan and output flags together for seamless security reviews
-gokart scan -r https://github.com/ShiftLeftSecurity/shiftleft-go-demo -o gokart-shiftleft-go-demo.txt -v 
+gokart scan -r https://github.com/ShiftLeftSecurity/shiftleft-go-demo -o gokart-shiftleft-go-demo.txt -v
 
 # Use remote scan, output and sarif flags for frictionless integration into CI/CD
 gokart scan -r https://github.com/ShiftLeftSecurity/shiftleft-go-demo -o gokart-shiftleft-go-demo.txt -s

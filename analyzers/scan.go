@@ -28,8 +28,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/praetorian-inc/gokart/run"
-	"github.com/praetorian-inc/gokart/util"
+	"github.com/estensen/gokart/run"
+	"github.com/estensen/gokart/util"
 	"golang.org/x/tools/go/analysis"
 )
 

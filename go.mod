@@ -8,7 +8,7 @@ require (
 	github.com/google/go-cmp v0.5.9
 	github.com/lithammer/dedent v1.1.0
 	github.com/owenrumney/go-sarif v1.1.1
-	github.com/praetorian-inc/gokart v0.5.1
+	github.com/estensen/gokart v0.5.1
 	github.com/segmentio/fasthash v1.0.3
 	github.com/spf13/cobra v1.8.0
 	golang.org/x/tools v0.15.0
